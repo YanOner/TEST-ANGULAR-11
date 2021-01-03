@@ -1,0 +1,35 @@
+<h1>{{title}}</h1>
+<br>
+<div>
+  <label for="slcCountry">Country: </label>
+  <select id="slcCountry" ng-ngModel="countries">
+    <option value="0">--- Select ---</option>
+    <option *ngFor="let i of countries" [value]="i.code">{{i.name}}</option> 
+  </select>
+</div>
+<br>
+<div>
+  <label for="slcFrom">Currency From: </label>
+  <select id="slcFrom">
+    <option value="0">--- Select ---</option>
+  </select>
+  &nbsp;
+  <label for="slcTo">To: </label>
+  <select id="slcTo">
+    <option value="0">--- Select ---</option>
+  </select>
+  &nbsp;
+  <span>1.11</span>
+</div>
+<br>
+<div>
+  <label for="txtConvert">Convert: </label>
+  <input id="txtConvert">
+  &nbsp;
+  <button>OK</button>
+</div>
+<br>
+<div>
+  <label for="txtResult">Result: </label>
+  <input id="txtResult" disabled>
+</div>
