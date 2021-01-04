@@ -9,7 +9,7 @@ import { Atm } from 'src/model/Atm';
 @Injectable({ providedIn: 'root' })
 export class AtmService {
 
-    private atmUrl = 'http://gmtatmw.azurewebsites.net/api/v1/atm';
+    private atmUrl = 'https://gmtatmw.azurewebsites.net/api/v1/atm';
     // private atmUrl = 'http://localhost:8080/api/v1/atm';
 
     httpOptions = {
