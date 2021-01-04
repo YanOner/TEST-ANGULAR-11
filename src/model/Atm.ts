@@ -1,4 +1,4 @@
-import { Address } from "cluster";
+import { Address } from "src/model/Address";
 
 export interface Atm {
     type: string;
