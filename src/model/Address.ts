@@ -1,7 +1,7 @@
-export interface Address {
-    street: string;
-    housenumber: string;
-    postalcode: string;
-    city: string;
-    geoLocation: Map<string, number>;
+export class Address {
+    public street: string;
+    public housenumber: string;
+    public postalcode: string;
+    public city: string;
+    public geoLocation: Map<string, number>;
 }

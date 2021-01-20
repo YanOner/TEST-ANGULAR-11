@@ -2,12 +2,18 @@
 <br>
 <div>
   <label for="slcCountry">Country:</label>
-  <select id="slcCountry" ng-ngModel="countries">
+  <select id="slcCountry" ng-ngModel="countries" #selectAtm (change)="onSelectedAtm(selectAtm.value)">
     <option value="0">--- Select ---</option>
     <option *ngFor="let i of atm" [value]="i.address.geoLocation['lat']">
       {{i.address.city}} - {{i.address.street}}
     </option> 
   </select>
+</div>
+<div>
+  <label>Postal Code:</label><span>{{postalcode}}</span><br>
+  <label>House Number:</label><span>{{housenumber}}</span><br>
+  <label>Latitud:</label><span>{{latitud}}</span><br>
+  <label>Longitud:</label><span>{{longitud}}</span>
 </div>
 <br>
 <div>

@@ -15,6 +15,8 @@ export class AtmComponent implements OnInit {
   countries: Country[] = [];
   atm: Atm[] = [];
 
+  selectAtm: Atm;
+
   selectFrom: string = '';
   selectTo: string = '';
 
@@ -23,6 +25,11 @@ export class AtmComponent implements OnInit {
   txtConvert: any = '1';
 
   result: number = 0;
+
+  postalcode = '-';
+  housenumber = '-';
+  latitud = '-';
+  longitud = '-';
 
   constructor(private atmService: AtmService) { }
 
@@ -35,7 +42,7 @@ export class AtmComponent implements OnInit {
     this.atmService.getCountries().subscribe(
       result => {
         this.countries = result;
-        console.log('countries: ' + this.countries);
+        console.log('countries: ' + this.countries.length);
       }
     );
   }
@@ -44,7 +51,7 @@ export class AtmComponent implements OnInit {
     this.atmService.getAtms().subscribe(
       result => {
         this.atm = result;
-        console.log('atms: ' + result.length);
+        console.log('atms: ' + this.atm.length);
         this.selectFrom = 'USD';
       }
     );
@@ -52,7 +59,7 @@ export class AtmComponent implements OnInit {
 
   convertAtm() {
     this.convert = 0.00;
-    if(this.selectFrom != '' && this.selectTo != '') {
+    if (this.selectFrom != '' && this.selectTo != '') {
       this.atmService.convert(this.selectFrom, this.selectTo).subscribe(
         result => {
           console.log(result);
@@ -77,9 +84,26 @@ export class AtmComponent implements OnInit {
   convertEvent() {
     this.result = 0;
     console.log(this.txtConvert);
-    if(!Number.isNaN(this.txtConvert)) {
+    if (!Number.isNaN(this.txtConvert)) {
       this.result = this.convert * this.txtConvert;
     }
+  }
+
+  onSelectedAtm(value: string) {
+    console.log(value);
+    this.postalcode = '-';
+    this.housenumber = '-';
+    this.latitud = '-';
+    this.longitud = '-';
+    this.selectAtm = this.atm.find(i => i.address.geoLocation['lat'] == value);
+    console.log(this.selectAtm);
+    if (this.selectAtm) {
+      this.postalcode = this.selectAtm.address.postalcode;
+      this.housenumber = this.selectAtm.address.housenumber;
+      this.latitud = this.selectAtm.address.geoLocation['lat'];
+      this.longitud = this.selectAtm.address.geoLocation['lng'];
+    }
+
   }
 
 }
